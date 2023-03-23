@@ -116,5 +116,54 @@ select *
   select * from employees where employees.HireDate >= '1994-01-01' and  employees.HireDate <= getdate();
 
   /* Find how long employees have been working for Northwind (in years!) */
+ 
+     SELECT Employeeid, firstname, lastname, Hiredate, title,
+	     DATEDIFF(year, Hiredate, GETDATE()) AS NumberofYears
+    
+      FROM EMPLOYEEs;
+
+	  /* Get a list of all products sorted by quantity (ascending and descending order) */
+
+	  select ProductId, productname, UnitsInStock from products
+	  order by UnitsInStock ASC;
+
+	  select ProductId, productname, UnitsInStock from products
+	  order by UnitsInStock DESC;
+
+ /* Find all products that are low on stock (quantity less than 6)
+ */
+ select ProductId, productname, UnitsInStock from products
+ where Products.UnitsInStock < 6;
+
+ /* Find a list of all discontinued products. */
+
+ select ProductId, productname, Discontinued from products
+ where Discontinued = 1;
+
+/*  Find a list of all products that have Tofu in the product name. */
+
+select ProductId, productname from products
+ where productname like '%Tofu%';
+ 
+ /* Find the product that has the highest unit price. 
+ */
+ select max(products.Unitprice) as price from products;
+
+ /* Get a list of all employees who got hired after 1/1/1993
+ */
+
+ select Employees.LastName, Employees.FirstName, Employees.HireDate from Employees
+ where Employees.HireDate > '1/1/1993';
+
+ /* Get all employees who have title : “Ms.” And “Mrs.” */
+
+ select Employees.LastName, Employees.FirstName, Employees.Title, Employees.titleofcourtesy from employees
+ where employees.titleofcourtesy like '%Ms.' or
+       employees.titleofcourtesy like '%Mrs.';
+
+	   /* Get all employees who have a Home phone number that has area code 206 */
+
+select Employees.LastName, Employees.FirstName, Employees.HomePhone from employees
+where employees.HomePhone like '(206)%';
 
  
